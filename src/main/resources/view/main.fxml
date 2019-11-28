@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="450.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ericampire.app.controller.Controller">
+    <children>
+
+        <Pane fx:id="loginPane" layoutX="7.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #505761;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+
+            <children>
+                <Pane layoutX="113.0" layoutY="84.0" prefHeight="327.0" prefWidth="498.0" style="-fx-background-color: #504D57; -fx-background-radius: 10;">
+                    <children>
+                        <ImageView fitHeight="45.0" fitWidth="60.0" layoutX="47.0" layoutY="74.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../img/user.png" />
+                            </image>
+                        </ImageView>
+                        <ImageView fitHeight="45.0" fitWidth="60.0" layoutX="47.0" layoutY="139.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../img/pass.png" />
+                            </image>
+                        </ImageView>
+                        <TextField fx:id="user" layoutX="129.0" layoutY="83.0" prefHeight="25.0" prefWidth="260.0" promptText="Username" style="-fx-background-color: #93AFC3; -fx-background-radius: 10;" />
+                        <PasswordField fx:id="pwd" layoutX="129.0" layoutY="150.0" prefHeight="25.0" prefWidth="257.0" promptText="mot de passe" style="-fx-background-color: #93AFC3; -fx-background-radius: 10;" />
+                        <Button fx:id="btnLogin" layoutX="288.0" layoutY="217.0" mnemonicParsing="false" onAction="#connexion" prefHeight="25.0" prefWidth="98.0" style="-fx-background-color: #3D8ABE; -fx-border-radius: 30; -fx-background-radius: 20;" text="connexion" />
+                        <Button fx:id="btnCreerCompte" layoutX="128.0" layoutY="216.0" mnemonicParsing="false" onAction="#creationCompte" prefHeight="27.0" prefWidth="97.0" style="-fx-background-color: #3D8ABE; -fx-border-radius: 30; -fx-background-radius: 20;" text="creer compte" />
+                        <Label layoutX="131.0" layoutY="42.0" style="-fx-text-fill: #93AFC3;" text="Authentification">
+                            <font>
+                                <Font size="13.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </Pane>
+                <Label layoutX="322.0" layoutY="50.0" style="-fx-text-fill: #93AFC3;" text="CHAT-ROOM">
+                    <font>
+                        <Font name="System Bold" size="22.0" />
+                    </font>
+                </Label>
+                <ImageView fitHeight="150.0" fitWidth="200.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" />
+            </children>
+        </Pane>
+        <Pane fx:id="creationPane" layoutX="7.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #505761;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <Pane layoutX="126.0" layoutY="86.0" prefHeight="327.0" prefWidth="437.0" style="-fx-background-color: #504D57; -fx-background-radius: 10;">
+                    <children>
+                        <TextField fx:id="utilisateurCreation" layoutX="100.0" layoutY="84.0" prefHeight="25.0" prefWidth="257.0" promptText="utilisateur" style="-fx-background-color: #93AFC3; -fx-background-radius: 10;" />
+                        <TextField fx:id="userCreation" layoutX="100.0" layoutY="136.0" prefHeight="25.0" prefWidth="260.0" promptText="UserName" style="-fx-background-color: #93AFC3; -fx-background-radius: 10;" />
+                        <PasswordField fx:id="pwdCreation" layoutX="102.0" layoutY="186.0" prefHeight="25.0" prefWidth="257.0" promptText="mot de passe" style="-fx-background-color: #93AFC3; -fx-background-radius: 10;" />
+                        <Button fx:id="creationCompte" layoutX="262.0" layoutY="238.0" mnemonicParsing="false" onAction="#compteCreer" prefHeight="27.0" prefWidth="97.0" style="-fx-background-color: #3D8ABE; -fx-border-radius: 30; -fx-background-radius: 20;" text="Creer compte" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Button>
+                        <Label layoutX="102.0" layoutY="42.0" style="-fx-text-fill: #93AFC3;" text="Creation Compte">
+                            <font>
+                                <Font size="13.0" />
+                            </font>
+                        </Label>
+                  <Button fx:id="creationCompte1" layoutX="102.0" layoutY="238.0" mnemonicParsing="false" onAction="#cancelAccountCreation" prefHeight="27.0" prefWidth="97.0" style="-fx-background-color: #3D8ABE; -fx-border-radius: 30; -fx-background-radius: 20;" text="Annuler" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Button>
+                    </children>
+                </Pane>
+                <Label layoutX="285.0" layoutY="50.0" style="-fx-text-fill: #93AFC3;" text="CHAT-ROOM">
+                    <font>
+                        <Font name="A bit sketchy regular" size="22.0" />
+                    </font>
+                </Label>
+            </children>
+        </Pane>
+
+        <Pane fx:id="creerChatRoom" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #505761;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <Label layoutX="297.0" layoutY="10.0" style="-fx-text-fill: #93AFC3;" text="CHAT-ROOM">
+                    <font>
+                        <Font size="25.0" />
+                    </font>
+                </Label>
+                <Pane layoutX="58.0" layoutY="131.0" prefHeight="291.0" prefWidth="585.0" style="-fx-background-color: #504D57; -fx-background-radius: 10;">
+                    <children>
+                        <Button layoutX="503.0" layoutY="250.0" mnemonicParsing="false" onMouseClicked="#creer_chatRoom" prefHeight="25.0" prefWidth="74.0" style="-fx-background-color: #93AFC3; -fx-background-radius: 30;" text="creer" />
+                        <Button layoutX="407.0" layoutY="250.0" mnemonicParsing="false" onMouseClicked="#retour_in_add_bd" prefHeight="25.0" prefWidth="74.0" style="-fx-background-color: #93AFC3; -fx-background-radius: 30;" text="annuler" />
+                        <Label layoutX="10.0" layoutY="6.0" style="-fx-text-fill: #93AFC3;" text="Selectionnnez un participants">
+                            <font>
+                                <Font size="16.0" />
+                            </font>
+                        </Label>
+                  <ListView fx:id="userList" layoutX="9.0" layoutY="38.0" prefHeight="199.0" prefWidth="568.0" />
+                    </children>
+                </Pane>
+                <Label layoutX="239.0" layoutY="41.0" style="-fx-text-fill: #93AFC3;" text="Creer un nouveau Chat-Room">
+                    <font>
+                        <Font size="20.0" />
+                    </font>
+                </Label>
+                <Label layoutX="58.0" layoutY="81.0" style="-fx-text-fill: #93AFC3;" text="Nom de Chat-Room">
+                    <font>
+                        <Font size="16.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="txt_nombd" layoutX="218.0" layoutY="78.0" prefHeight="25.0" prefWidth="257.0" style="-fx-background-color: #93AFC3; -fx-background-radius: 30;" />
+            </children>
+        </Pane>
+        <Pane fx:id="homePane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #505761;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <Label layoutX="277.0" layoutY="39.0" style="-fx-text-fill: #93AFC3;" text="CHAT- ROOM">
+                    <font>
+                        <Font size="38.0" />
+                    </font>
+                </Label>
+                <Pane layoutX="138.0" layoutY="131.0" prefHeight="188.0" prefWidth="437.0" style="-fx-background-color: #504D57;">
+                    <children>
+                        <ImageView fx:id="btn_newbd" fitHeight="55.0" fitWidth="65.0" layoutX="119.0" layoutY="49.0" onMouseClicked="#new_bd" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../img/add.png" />
+                            </image>
+                        </ImageView>
+                        <ImageView fx:id="btn_mesbd" fitHeight="45.0" fitWidth="61.0" layoutX="264.0" layoutY="54.0" onMouseClicked="#mesbd" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../img/edit.png" />
+                            </image>
+                        </ImageView>
+                        <Label layoutX="83.0" layoutY="114.0" style="-fx-text-fill: #93AFC3;" text="Ajouter un Chat-ROOM" />
+                        <Label layoutX="258.0" layoutY="114.0" style="-fx-text-fill: #93AFC3;" text="Histoirique" />
+                    </children>
+                </Pane>
+                <ImageView fx:id="btnDeconnexion" fitHeight="25.0" fitWidth="41.0" layoutX="514.0" layoutY="347.0" onMouseClicked="#deconnexion" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../img/logout.png" />
+                    </image>
+                </ImageView>
+                <Label layoutX="486.0" layoutY="372.0" style="-fx-text-fill: #93AFC3;" text="se deconnecter" />
+            </children>
+        </Pane>
+        <Pane fx:id="mesChatRoom" layoutX="9.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #505761;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="9.0" AnchorPane.rightAnchor="-9.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <Label layoutX="255.0" layoutY="14.0" style="-fx-text-fill: #93AFC3;" text="CHAT- ROOM">
+                    <font>
+                        <Font size="25.0" />
+                    </font>
+                </Label>
+                <Pane layoutX="13.0" layoutY="112.0" prefHeight="278.0" prefWidth="671.0" style="-fx-background-color: #504D57; -fx-background-radius: 10;">
+               <children>
+                  <ListView fx:id="listHostorique" layoutX="8.0" layoutY="11.0" prefHeight="257.0" prefWidth="656.0" />
+               </children></Pane>
+                <Label layoutX="22.0" layoutY="75.0" style="-fx-text-fill: #93AFC3;" text="Historique">
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+                </Label>
+                <Button fx:id="mesbd_retour" layoutX="592.0" layoutY="398.0" mnemonicParsing="false" onAction="#mesbd_retour" prefHeight="25.0" prefWidth="92.0" style="-fx-background-color: #3D8ABE; -fx-background-radius: 10;" text="Retour" textFill="WHITE" />
+            </children>
+        </Pane>
+        <Pane fx:id="chatRoom" layoutY="-6.0" prefHeight="460.0" prefWidth="710.0" style="-fx-background-color: #505761;" visible="false">
+            <children>
+                <Label layoutX="297.0" layoutY="9.0" style="-fx-text-fill: #93AFC3;" text="CHAT-ROOM">
+                    <font>
+                        <Font size="25.0" />
+                    </font>
+                </Label>
+                <Pane layoutX="26.0" layoutY="65.0" prefHeight="291.0" prefWidth="656.0" style="-fx-background-color: #504D57; -fx-background-radius: 10;" />
+                <Label layoutX="291.0" layoutY="36.0" style="-fx-text-fill: #93AFC3;" text="nom du Chat-Room">
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="txtenvoyz" layoutX="26.0" layoutY="365.0" prefHeight="27.0" prefWidth="585.0" style="-fx-background-color: #93AFC3; -fx-background-radius: 30;" />
+                <Button layoutX="617.0" layoutY="421.0" mnemonicParsing="false" onMouseClicked="#quittezchat" prefHeight="25.0" prefWidth="67.0" style="-fx-background-color: #93AFC3; -fx-background-radius: 30;" text="Quittez" textFill="WHITE" />
+                <Button layoutX="617.0" layoutY="365.0" mnemonicParsing="false" onMouseClicked="#envoyezMes" prefHeight="25.0" prefWidth="67.0" style="-fx-background-color: #93AFC3; -fx-background-radius: 30;" text="Envoyez" textFill="WHITE" />
+            </children>
+        </Pane>
+    </children>
+</AnchorPane>
