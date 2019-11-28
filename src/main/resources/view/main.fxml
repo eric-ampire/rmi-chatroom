@@ -8,7 +8,7 @@
 <AnchorPane id="AnchorPane" prefHeight="450.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ericampire.app.controller.Controller">
     <children>
 
-        <Pane fx:id="loginPane" layoutX="7.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #505761;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <Pane fx:id="loginPane" layoutX="7.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #505761;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 
             <children>
                 <Pane layoutX="113.0" layoutY="84.0" prefHeight="327.0" prefWidth="498.0" style="-fx-background-color: #504D57; -fx-background-radius: 10;">
@@ -42,13 +42,13 @@
                 <ImageView fitHeight="150.0" fitWidth="200.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" />
             </children>
         </Pane>
-        <Pane fx:id="creationPane" layoutX="7.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #505761;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <Pane fx:id="creationPane" layoutX="7.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #505761;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
                 <Pane layoutX="126.0" layoutY="86.0" prefHeight="327.0" prefWidth="437.0" style="-fx-background-color: #504D57; -fx-background-radius: 10;">
                     <children>
-                        <TextField fx:id="utilisateurCreation" layoutX="100.0" layoutY="84.0" prefHeight="25.0" prefWidth="257.0" promptText="utilisateur" style="-fx-background-color: #93AFC3; -fx-background-radius: 10;" />
-                        <TextField fx:id="userCreation" layoutX="100.0" layoutY="136.0" prefHeight="25.0" prefWidth="260.0" promptText="UserName" style="-fx-background-color: #93AFC3; -fx-background-radius: 10;" />
-                        <PasswordField fx:id="pwdCreation" layoutX="102.0" layoutY="186.0" prefHeight="25.0" prefWidth="257.0" promptText="mot de passe" style="-fx-background-color: #93AFC3; -fx-background-radius: 10;" />
+                        <TextField fx:id="newUsername" layoutX="100.0" layoutY="84.0" prefHeight="25.0" prefWidth="257.0" promptText="Username" style="-fx-background-color: #93AFC3; -fx-background-radius: 10;" />
+                        <TextField fx:id="newDisplayName" layoutX="100.0" layoutY="136.0" prefHeight="25.0" prefWidth="260.0" promptText="Nom complet" style="-fx-background-color: #93AFC3; -fx-background-radius: 10;" />
+                        <PasswordField fx:id="newPassword" layoutX="102.0" layoutY="186.0" prefHeight="25.0" prefWidth="257.0" promptText="mot de passe" style="-fx-background-color: #93AFC3; -fx-background-radius: 10;" />
                         <Button fx:id="creationCompte" layoutX="262.0" layoutY="238.0" mnemonicParsing="false" onAction="#compteCreer" prefHeight="27.0" prefWidth="97.0" style="-fx-background-color: #3D8ABE; -fx-border-radius: 30; -fx-background-radius: 20;" text="Creer compte" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="12.0" />
@@ -63,6 +63,7 @@
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
+                  <ProgressBar fx:id="creationProgress" layoutX="104.0" layoutY="283.0" prefHeight="18.0" prefWidth="257.0" visible="false" />
                     </children>
                 </Pane>
                 <Label layoutX="285.0" layoutY="50.0" style="-fx-text-fill: #93AFC3;" text="CHAT-ROOM">

@@ -1,29 +1,38 @@
 package com.ericampire.app.controller;
 
+import com.ericampire.app.model.entity.User;
+import com.ericampire.app.model.repository.GroupRepository;
+import com.ericampire.app.model.repository.MessageRepository;
+import com.ericampire.app.model.repository.UserRepository;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.net.URL;
+import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.logging.Logger;
 
+@Component
 public class Controller implements Initializable {
 
+    @Autowired private GroupRepository groupRepository;
+    @Autowired private MessageRepository messageRepository;
+    @Autowired private UserRepository userRepository;
 
-    @FXML
-    Pane loginPane = new Pane();
-    @FXML
-    Pane homePane = new Pane();
-    @FXML
-    Pane mesChatRoom = new Pane();
-    @FXML
-    Pane creerChatRoom = new Pane();
+    @FXML public TextField newUsername, newDisplayName, newPassword;
+    @FXML public ProgressBar creationProgress;
+
+    // Pane
+    @FXML Pane loginPane, homePane, mesChatRoom, creerChatRoom;
+
+
     @FXML
     ImageView deconnexion = new ImageView();
     @FXML
@@ -57,11 +66,19 @@ public class Controller implements Initializable {
     public void connexion() throws Exception {
         String log = user.getText();
         String mdp = pwd.getText();
-        if ("a".equals(log) && "a".equals(mdp)) {
+
+        Optional<User> currentUser = userRepository.findUserByUserNameAndPassword(log, mdp);
+        if (currentUser.isPresent()) {
             homePane.setVisible(true);
             loginPane.setVisible(false);
+
+            System.out.println(currentUser.get().getUserName());
+
+            user.clear();
+            pwd.clear();
         } else {
-            System.out.println("mysgbdfxml.FXMLDocumentController.deconnexion()");
+            // Error message
+            System.out.println("user not found");
         }
     }
 
@@ -73,8 +90,25 @@ public class Controller implements Initializable {
 
     @FXML
     public void compteCreer() throws Exception {
-        creationPane.setVisible(false);
-        loginPane.setVisible(true);
+        String username = newUsername.getText();
+        String displayName = newDisplayName.getText();
+        String password = newPassword.getText();
+
+        if (username.isEmpty() || displayName.isEmpty() || password.isEmpty()) {
+            // Show error message
+        } else {
+            creationProgress.setVisible(true);
+            User newUser = new User(username, displayName, password);
+            userRepository.save(newUser);
+
+            creationPane.setVisible(false);
+            loginPane.setVisible(true);
+
+            newUsername.clear();
+            newDisplayName.clear();
+            newPassword.clear();
+            creationProgress.setVisible(false);
+        }
     }
 
     @FXML
