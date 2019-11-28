@@ -1,8 +1,7 @@
 package com.ericampire.app.model.repository;
 
 import com.ericampire.app.model.entity.Groupe;
-import com.ericampire.app.model.entity.User;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.CrudRepository;
 
-public interface GroupRepository extends JpaRepository<Groupe, Long> {
+public interface GroupRepository extends CrudRepository<Groupe, Long> {
 }

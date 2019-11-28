@@ -1,7 +1,10 @@
 package com.ericampire.app.model.repository;
 
 import com.ericampire.app.model.entity.User;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.CrudRepository;
 
-public interface UserRepository extends JpaRepository<User, Long> {
+import java.util.Optional;
+
+public interface UserRepository extends CrudRepository<User, Long> {
+    Optional<User> findUserByUserNameAndPassword(String username, String password);
 }
