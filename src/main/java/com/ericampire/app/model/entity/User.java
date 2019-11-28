@@ -12,8 +12,16 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String userName;
-    private String name;
+    private String displayName;
     private String password;
+
+    public String getDisplayName() {
+        return displayName;
+    }
+
+    public void setDisplayName(String displayName) {
+        this.displayName = displayName;
+    }
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
@@ -30,6 +38,20 @@ public class User {
     public User() {
     }
 
+    public User(String userName, String name, String password) {
+        this.userName = userName;
+        this.displayName = name;
+        this.password = password;
+    }
+
+    public List<Groupe> getGroups() {
+        return groups;
+    }
+
+    public void setGroups(List<Groupe> groups) {
+        this.groups = groups;
+    }
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -40,14 +62,6 @@ public class User {
 
     public void setUserName(String userName) {
         this.userName = userName;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getPassword() {
