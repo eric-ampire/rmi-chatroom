@@ -11,6 +11,15 @@ public class Message {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private Date date;
+    private String contenu;
+
+    public String getContenu() {
+        return contenu;
+    }
+
+    public void setContenu(String contenu) {
+        this.contenu = contenu;
+    }
 
     public Long getId() {
         return id;
@@ -26,5 +35,10 @@ public class Message {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    @Override
+    public String toString() {
+        return contenu;
     }
 }
