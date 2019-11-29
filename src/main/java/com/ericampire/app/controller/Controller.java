@@ -1,37 +1,48 @@
 package com.ericampire.app.controller;
 
-import com.ericampire.app.model.entity.User;
-import com.ericampire.app.model.repository.GroupRepository;
-import com.ericampire.app.model.repository.MessageRepository;
-import com.ericampire.app.model.repository.UserRepository;
+import com.ericampire.app.model.entity.*;
+import com.ericampire.app.model.repository.*;
+import javafx.beans.Observable;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Group;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.net.URL;
-import java.util.List;
-import java.util.Optional;
-import java.util.ResourceBundle;
+import java.util.*;
 import java.util.logging.Logger;
+import java.util.stream.Stream;
 
 @Component
 public class Controller implements Initializable {
 
+    @FXML public TextField txtenvoyz;
+    @FXML public ListView<Message> listMessage;
+    @FXML public ListView<Message> listHostorique;
+    private User currentUser;
+    private Groupe currentGroup;
+
+    @FXML public ListView<User> newChatRoomUserLIstView;
+    @FXML public TextField edtNewNameChatRoom;
+
     @Autowired private GroupRepository groupRepository;
     @Autowired private MessageRepository messageRepository;
     @Autowired private UserRepository userRepository;
+    @Autowired private GroupMessageUserRepository groupMessageUserRepository;
+    @Autowired private GroupUserRepository groupUserRepository;
 
     @FXML public TextField newUsername, newDisplayName, newPassword;
     @FXML public ProgressBar creationProgress;
 
     // Pane
     @FXML Pane loginPane, homePane, mesChatRoom, creerChatRoom;
-
 
     @FXML
     ImageView deconnexion = new ImageView();
@@ -67,12 +78,13 @@ public class Controller implements Initializable {
         String log = user.getText();
         String mdp = pwd.getText();
 
-        Optional<User> currentUser = userRepository.findUserByUserNameAndPassword(log, mdp);
-        if (currentUser.isPresent()) {
+        Optional<User> foundedUser = userRepository.findUserByUserNameAndPassword(log, mdp);
+        if (foundedUser.isPresent()) {
             homePane.setVisible(true);
             loginPane.setVisible(false);
 
-            System.out.println(currentUser.get().getUserName());
+            currentUser = foundedUser.get();
+            System.out.println(foundedUser.get().getUserName());
 
             user.clear();
             pwd.clear();
@@ -99,7 +111,7 @@ public class Controller implements Initializable {
         } else {
             creationProgress.setVisible(true);
             User newUser = new User(username, displayName, password);
-            userRepository.save(newUser);
+            currentUser = userRepository.save(newUser);
 
             creationPane.setVisible(false);
             loginPane.setVisible(true);
@@ -133,6 +145,33 @@ public class Controller implements Initializable {
 
     @FXML
     public void envoyezMes() {
+        String contenu = txtenvoyz.getText();
+
+        if (contenu.isEmpty()) {
+            System.out.println("Contenu null");
+        } else {
+
+            Message message = new Message();
+            message.setDate(new Date());
+            message.setContenu(contenu);
+
+            Message currentMessage = messageRepository.save(message);
+
+            // Message
+            GroupMessageUser groupMessageUser = new GroupMessageUser();
+            groupMessageUser.setIdGroup(currentGroup.getId());
+            groupMessageUser.setIdMessage(currentMessage.getId());
+            groupMessageUser.setIdUser(currentUser.getId());
+
+            groupMessageUserRepository.save(groupMessageUser);
+
+            listMessage.getItems().clear();
+            messageRepository.findAll().forEach(item -> {
+                listMessage.getItems().add(item);
+            });
+
+            txtenvoyz.clear();
+        }
     }
 
     @FXML
@@ -140,13 +179,24 @@ public class Controller implements Initializable {
         homePane.setVisible(false);
         mesChatRoom.setVisible(true);
 
+        listHostorique.getItems().clear();
+        messageRepository.findAll().forEach(item -> {
+            listHostorique.getItems().add(item);
+        });
     }
 
     @FXML
+    // Show view for chatroom creation
     public void new_bd() throws Exception {
+        newChatRoomUserLIstView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        newChatRoomUserLIstView.getItems().removeAll();
+        userRepository.findAll().forEach(user -> {
+            newChatRoomUserLIstView.getItems().add(user);
+            System.out.println(user);
+        });
+
         homePane.setVisible(false);
         creerChatRoom.setVisible(true);
-
     }
 
     @FXML
@@ -154,13 +204,6 @@ public class Controller implements Initializable {
         creerChatRoom.setVisible(false);
         homePane.setVisible(true);
 
-
-    }
-
-    @FXML
-    public void creer_chatRoom() throws Exception {
-        creer_chatRoom.setVisible(false);
-        chatRoom.setVisible(true);
 
     }
 
@@ -173,5 +216,29 @@ public class Controller implements Initializable {
     public void cancelAccountCreation(ActionEvent actionEvent) {
         creationPane.setVisible(false);
         loginPane.setVisible(true);
+    }
+
+    // Create group de chat
+    @FXML
+    public void createNewChatRoom(MouseEvent mouseEvent) {
+
+        String chatroomName = edtNewNameChatRoom.getText();
+        ObservableList<User> selectedUser = newChatRoomUserLIstView.getSelectionModel().getSelectedItems();
+
+        if (chatroomName.isEmpty() || selectedUser.isEmpty()) {
+            System.out.println("Erreur input");
+        } else {
+            Groupe newGroup = new Groupe();
+            newGroup.setName(chatroomName);
+            currentGroup = groupRepository.save(newGroup);
+
+            selectedUser.forEach(user -> {
+                GroupUser groupUser = new GroupUser(currentGroup.getId(), user.getId());
+                groupUserRepository.save(groupUser);
+            });
+
+            creer_chatRoom.setVisible(false);
+            chatRoom.setVisible(true);
+        }
     }
 }
