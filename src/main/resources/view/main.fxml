@@ -8,7 +8,7 @@
 <AnchorPane id="AnchorPane" prefHeight="450.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ericampire.app.controller.Controller">
     <children>
 
-        <Pane fx:id="loginPane" layoutX="7.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #505761;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <Pane fx:id="loginPane" layoutX="7.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #505761;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 
             <children>
                 <Pane layoutX="113.0" layoutY="84.0" prefHeight="327.0" prefWidth="498.0" style="-fx-background-color: #504D57; -fx-background-radius: 10;">
@@ -42,7 +42,7 @@
                 <ImageView fitHeight="150.0" fitWidth="200.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" />
             </children>
         </Pane>
-        <Pane fx:id="creationPane" layoutX="7.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #505761;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <Pane fx:id="creationPane" layoutX="7.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #505761;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
                 <Pane layoutX="126.0" layoutY="86.0" prefHeight="327.0" prefWidth="437.0" style="-fx-background-color: #504D57; -fx-background-radius: 10;">
                     <children>
@@ -83,14 +83,14 @@
                 </Label>
                 <Pane layoutX="58.0" layoutY="131.0" prefHeight="291.0" prefWidth="585.0" style="-fx-background-color: #504D57; -fx-background-radius: 10;">
                     <children>
-                        <Button layoutX="503.0" layoutY="250.0" mnemonicParsing="false" onMouseClicked="#creer_chatRoom" prefHeight="25.0" prefWidth="74.0" style="-fx-background-color: #93AFC3; -fx-background-radius: 30;" text="creer" />
+                        <Button layoutX="503.0" layoutY="250.0" mnemonicParsing="false" onMouseClicked="#createNewChatRoom" prefHeight="25.0" prefWidth="74.0" style="-fx-background-color: #93AFC3; -fx-background-radius: 30;" text="creer" />
                         <Button layoutX="407.0" layoutY="250.0" mnemonicParsing="false" onMouseClicked="#retour_in_add_bd" prefHeight="25.0" prefWidth="74.0" style="-fx-background-color: #93AFC3; -fx-background-radius: 30;" text="annuler" />
                         <Label layoutX="10.0" layoutY="6.0" style="-fx-text-fill: #93AFC3;" text="Selectionnnez un participants">
                             <font>
                                 <Font size="16.0" />
                             </font>
                         </Label>
-                  <ListView fx:id="userList" layoutX="9.0" layoutY="38.0" prefHeight="199.0" prefWidth="568.0" />
+                  <ListView fx:id="newChatRoomUserLIstView" layoutX="9.0" layoutY="38.0" prefHeight="199.0" prefWidth="568.0" />
                     </children>
                 </Pane>
                 <Label layoutX="239.0" layoutY="41.0" style="-fx-text-fill: #93AFC3;" text="Creer un nouveau Chat-Room">
@@ -103,7 +103,7 @@
                         <Font size="16.0" />
                     </font>
                 </Label>
-                <TextField fx:id="txt_nombd" layoutX="218.0" layoutY="78.0" prefHeight="25.0" prefWidth="257.0" style="-fx-background-color: #93AFC3; -fx-background-radius: 30;" />
+                <TextField fx:id="edtNewNameChatRoom" layoutX="218.0" layoutY="78.0" prefHeight="25.0" prefWidth="257.0" style="-fx-background-color: #93AFC3; -fx-background-radius: 30;" />
             </children>
         </Pane>
         <Pane fx:id="homePane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #505761;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -163,7 +163,10 @@
                         <Font size="25.0" />
                     </font>
                 </Label>
-                <Pane layoutX="26.0" layoutY="65.0" prefHeight="291.0" prefWidth="656.0" style="-fx-background-color: #504D57; -fx-background-radius: 10;" />
+                <Pane layoutX="26.0" layoutY="65.0" prefHeight="291.0" prefWidth="656.0" style="-fx-background-color: #504D57; -fx-background-radius: 10;">
+               <children>
+                  <ListView fx:id="listMessage" layoutX="8.0" layoutY="11.0" prefHeight="271.0" prefWidth="640.0" />
+               </children></Pane>
                 <Label layoutX="291.0" layoutY="36.0" style="-fx-text-fill: #93AFC3;" text="nom du Chat-Room">
                     <font>
                         <Font size="18.0" />
