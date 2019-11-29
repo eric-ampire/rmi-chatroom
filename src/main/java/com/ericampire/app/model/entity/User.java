@@ -1,8 +1,6 @@
 package com.ericampire.app.model.entity;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -23,14 +21,6 @@ public class User {
         this.displayName = displayName;
     }
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(
-        name = "user_group",
-        joinColumns = @JoinColumn(name = "group_id", referencedColumnName = "id"),
-        inverseJoinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id")
-    )
-    private List<Groupe> groups = new ArrayList<>();
-
     public Long getId() {
         return id;
     }
@@ -42,14 +32,6 @@ public class User {
         this.userName = userName;
         this.displayName = name;
         this.password = password;
-    }
-
-    public List<Groupe> getGroups() {
-        return groups;
-    }
-
-    public void setGroups(List<Groupe> groups) {
-        this.groups = groups;
     }
 
     public void setId(Long id) {
@@ -70,5 +52,10 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Override
+    public String toString() {
+        return displayName;
     }
 }

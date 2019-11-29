@@ -12,22 +12,6 @@ public class Message {
     private Long id;
     private Date date;
 
-    @ManyToOne
-    @JoinColumn(name="user_id")
-    private User user;
-
-    @ManyToOne
-    @JoinColumn(name="group_id")
-    private Groupe groups;
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
     public Long getId() {
         return id;
     }
